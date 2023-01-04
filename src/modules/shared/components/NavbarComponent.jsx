@@ -1,10 +1,14 @@
+import { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth/context';
 
 
 export const NavbarComponent = () => {
     const navigate = useNavigate();
+    const { authState, logout } = useContext(AuthContext);
 
     function onLogout() {
+        logout();
         /** Vamos redireccionar al login y configuramos que el boton de atras del navegador sea reemplazado por el login */
         navigate('/login', {
             replace: true
@@ -48,7 +52,9 @@ export const NavbarComponent = () => {
 
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex justify-content-end">
                 <ul className="navbar-nav ml-auto">
-                    <span className="nav-item nav-link text-primary">Jesús</span>
+                    <span className="nav-item nav-link text-primary">
+                        { authState.user.name }
+                    </span>
                     <button className='btn btn-danger' onClick={ onLogout }>Logout</button>
                 </ul>
             </div>
