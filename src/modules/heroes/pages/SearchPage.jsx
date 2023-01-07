@@ -32,9 +32,9 @@ export const SearchPage = () => {
         <div className="col-12 col-sm-5">
           <h2>Buscando</h2>
           <hr />
-          <form onSubmit={ onSearchSubmit }>
+          <form onSubmit={ onSearchSubmit } data-testid='form'>
             <input type="text" placeholder="Buscar heroe" className="form-control" name="searchText" autoComplete="off" value={ searchText } onChange={ onInputChange } />
-            <button className="btn btn-outline-primary mt-1">Buscar</button>  
+            <button type="submit" className="btn btn-outline-primary mt-1">Buscar</button>  
           </form>
         </div>
         <div className="col-12 col-sm-7">
@@ -43,7 +43,7 @@ export const SearchPage = () => {
           <div className="alert alert-primary animate__animated animate__fadeIn" style={{ display: q !== '' ? 'none' : 'block' }}>
             Buscar un heroe
           </div>
-          <div className="alert alert-danger animate__animated animate__fadeIn" style={{ display: showErrorAlert ? 'block': 'none' }}>
+          <div className="alert alert-danger animate__animated animate__fadeIn" style={{ display: showErrorAlert ? 'block': 'none' }} data-testid='alert-danger'>
             No se encontró el heroe <strong>{ q }</strong>
           </div>
           {
